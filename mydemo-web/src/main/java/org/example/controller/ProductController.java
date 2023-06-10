@@ -8,12 +8,16 @@ import org.example.elasticRepository.ProductRepository;
 import org.example.entity.Product.Product;
 import org.example.entity.R.R;
 import org.example.mapper.ProductMapper;
+import org.example.service.cache.BloomFilterService;
+import org.example.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @Author: Shengke
@@ -35,6 +40,12 @@ public class ProductController {
     //注入 ElasticsearchRestTemplate
     @Autowired
     private ElasticsearchRestTemplate elasticsearchRestTemplate;
+
+    @Autowired
+    private BloomFilterService bloomFilterService;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Resource
     private ProductMapper productMapper;
@@ -78,12 +89,45 @@ public class ProductController {
     *   文档搜索
     * */
 
+
+    @GetMapping("/xiaomiQuery")
+    public R xiaomiQuery(String productTitle) throws ExecutionException {
+
+
+        Object o = (Product)bloomFilterService.get(productTitle);
+
+        //如果缓存不存在数据
+        if((int)o == -1){
+//            Product selectedProduct = productMapper.selectByName(productTitle);
+//            bloomFilterService.put(productTitle, selectedProduct);
+//
+//            Object newO = (Product)bloomFilterService.get(productTitle);
+            return R.fail("不存在缓存");
+        }else{
+            return R.success((Product)o);
+        }
+
+    }
+
+
+
     @GetMapping("/termQuery")
     public R termQuery(){
-        TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("title", "小米");
-        Iterable<Product> products = productRepository.search(termQueryBuilder);
-        for (Product product : products) {
-            log.info(product.toString());
+
+        NativeSearchQuery searchQuery = new NativeSearchQueryBuilder()
+                .withQuery(QueryBuilders.matchQuery("title", "小米"))
+                .withPageable(PageRequest.of(0, 1))
+                .build();
+
+        List<Product> products = elasticsearchRestTemplate.queryForList(searchQuery, Product.class, IndexCoordinates.of("shopping"));
+
+        if (!products.isEmpty()) {
+            String productId = products.get(0).getId().toString();
+            // ...
+        } else {
+            // 处理列表为空的情况
+            log.info("查询列表为空");
+            return R.fail("查询为空");
         }
 
         return R.success(products);

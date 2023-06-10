@@ -3,6 +3,7 @@ package org.example.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.example.entity.Product.Product;
 
 /**
@@ -12,4 +13,7 @@ import org.example.entity.Product.Product;
  */
 @Mapper
 public interface ProductMapper extends BaseMapper<Product> {
+
+
+    Product selectByName(@Param("productName") String title);
 }

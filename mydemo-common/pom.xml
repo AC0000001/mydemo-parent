@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.xinqi</groupId>
+        <groupId>com.example</groupId>
         <artifactId>mydemo-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -12,9 +12,7 @@
     <groupId>org.example</groupId>
     <artifactId>mydemo-common</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>../mydemo-dao</module>
-    </modules>
+
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -22,4 +20,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.1-jre</version>
+        </dependency>
+
+    </dependencies>
 </project>

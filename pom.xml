@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.xinqi</groupId>
+    <groupId>com.example</groupId>
     <artifactId>mydemo-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -16,22 +16,45 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
 
+    <properties>
+        <java.version>11</java.version>
+        <project.version>1.0-SNAPSHOT</project.version>
+    </properties>
     <modules>
         <module>mydemo-common</module>
         <module>mydemo-web</module>
         <module>mydemo-service</module>
+        <module>mydemo-system</module>
         <module>mydemo-dao</module>
-        <module>mydemo-common</module>
 
-
-        <!-- 需要微服务，请打开注释
-        <module>jeecg-boot-starter</module>
-         <module>jeecg-cloud-module</module>-->
     </modules>
+
+<!--    <dependencyManagement>-->
+<!--        <dependencies>-->
+<!--            <dependency>-->
+<!--                <groupId>com.example</groupId>-->
+<!--                <artifactId>mydemo-dao</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.example</groupId>-->
+<!--                <artifactId>mydemo-service</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.example</groupId>-->
+<!--                <artifactId>mydemo-web</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.example</groupId>-->
+<!--                <artifactId>mydemo-common</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--        </dependencies>-->
+<!--    </dependencyManagement>-->
+
 
     <dependencies>
 
@@ -46,11 +69,15 @@
             <optional>true</optional>
         </dependency>
 
+
+
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
             <version>3.14.1</version>
         </dependency>
+
+
 
         <dependency>
             <groupId>junit</groupId>
@@ -67,9 +94,13 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-            <version>5.1.47</version>
+<!--            //这是mysql5，对应的是com.mysql.jdbc.Driver-->
+<!--            <version>5.1.47</version>-->
+
+
+<!--            但这里不写，用的是8-->
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -83,8 +114,9 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.3</version>
+            <version>3.1.0</version>
         </dependency>
+
         <!--引入redis以及redis的数据库的池-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -122,28 +154,7 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <!--MyBatis-Plus代码生成器需要的依赖，开始-->
-        <!-- 持久层 -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
 
@@ -158,11 +169,7 @@
             <artifactId>json</artifactId>
             <version>20210307</version>
         </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.1.0</version>
-        </dependency>
+
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
@@ -173,12 +180,6 @@
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
             <version>2.1</version>
-        </dependency>
-        <!--MyBatis-Plus代码生成器需要的依赖，结束-->
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
@@ -212,17 +213,39 @@
                 </configuration>
             </plugin>
 
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
+                    <skipTests>true</skipTests>
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
                 </configuration>
             </plugin>
         </plugins>
+
+
+
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.json</include>
+                    <include>**/*.ftl</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
 

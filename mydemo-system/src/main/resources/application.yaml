@@ -45,8 +45,14 @@ elasticsearch:
 
 
 mybatis-plus:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.xinqi.bean # 别名扫描包
+  mapper-locations: classpath*:org/example/**/*Mapper.xml
+#  type-aliases-package: com.xinqi.bean # 别名扫描包
+  configuration:
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 返回类型为Map,显示null对应的字段
+    call-setters-on-nulls: true
+
 logging:
   level:
     root: info

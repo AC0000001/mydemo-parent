@@ -4,23 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.example</groupId>
-        <artifactId>mydemo-dao</artifactId>
+        <groupId>com.example</groupId>
+        <artifactId>mydemo-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../mydemo-dao/pom.xml</relativePath>
     </parent>
 
+    <groupId>org.example</groupId>
     <artifactId>mydemo-service</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>../mydemo-web</module>
-    </modules>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>org.example</groupId>
@@ -28,14 +26,15 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+
+
+
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>mydemo-dao</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-
     </dependencies>
-
 
 </project>

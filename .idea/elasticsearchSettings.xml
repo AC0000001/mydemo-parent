@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ElasticsearchConfiguration">
+    <option name="clusterConfigurations">
+      <map>
+        <entry key="5dd1a685-f9c6-47c6-8874-ae44ac5aed94">
+          <value>
+            <Y>
+              <option name="id" value="5dd1a685-f9c6-47c6-8874-ae44ac5aed94" />
+              <option name="label" value="http://182.92.149.107/" />
+              <option name="trustCertificate" value="true" />
+              <option name="url" value="http://182.92.149.107:9200" />
+              <option name="version" value="1" />
+            </Y>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="requestHistory">
+      <map>
+        <entry key="5dd1a685-f9c6-47c6-8874-ae44ac5aed94" value="[{&quot;path&quot;:&quot;/shopping/_search&quot;,&quot;body&quot;:&quot;{\n  \&quot;from\&quot;: 0,\n  \&quot;size\&quot;: 50,\n  \&quot;query\&quot;: {\n    \&quot;match_all\&quot;: {}\n  }\n}&quot;,&quot;method&quot;:&quot;GET&quot;},{&quot;path&quot;:&quot;/shopping/_search&quot;,&quot;body&quot;:&quot;{\n  \&quot;from\&quot;: 0,\n  \&quot;size\&quot;: 50,\n  \&quot;query\&quot;: {\n    \&quot;bool\&quot;: {\n      \&quot;must\&quot;: {\n        \&quot;match_all\&quot;: {}\n      },\n      \&quot;filter\&quot;: {\n        \&quot;bool\&quot;: {\n          \&quot;minimum_should_match\&quot;: 1,\n          \&quot;should\&quot;: [\n            {\n              \&quot;multi_match\&quot;: {\n                \&quot;lenient\&quot;: true,\n                \&quot;fields\&quot;: \&quot;*\&quot;,\n                \&quot;query\&quot;: \&quot;GET shopping\&quot;,\n                \&quot;type\&quot;: \&quot;best_fields\&quot;\n              }\n            }\n          ],\n          \&quot;_name\&quot;: \&quot;KQL_filter\&quot;\n        }\n      }\n    }\n  },\n  \&quot;highlight\&quot;: {\n    \&quot;pre_tags\&quot;: [\n      \&quot;@plugin-highlighted-field@\&quot;\n    ],\n    \&quot;post_tags\&quot;: [\n      \&quot;@/plugin-highlighted-field@\&quot;\n    ],\n    \&quot;fields\&quot;: {\n      \&quot;*\&quot;: {}\n    },\n    \&quot;fragment_size\&quot;: 2147483647\n  }\n}&quot;,&quot;method&quot;:&quot;GET&quot;},{&quot;path&quot;:&quot;/shopping/_search&quot;,&quot;body&quot;:&quot;{\n  \&quot;from\&quot;: 0,\n  \&quot;size\&quot;: 50,\n  \&quot;query\&quot;: {\n    \&quot;bool\&quot;: {\n      \&quot;filter\&quot;: {\n        \&quot;bool\&quot;: {\n          \&quot;minimum_should_match\&quot;: 1,\n          \&quot;should\&quot;: [\n            {\n              \&quot;multi_match\&quot;: {\n                \&quot;lenient\&quot;: true,\n                \&quot;fields\&quot;: \&quot;*\&quot;,\n                \&quot;query\&quot;: \&quot;GET test3\&quot;,\n                \&quot;type\&quot;: \&quot;best_fields\&quot;\n              }\n            }\n          ],\n          \&quot;_name\&quot;: \&quot;KQL_filter\&quot;\n        }\n      },\n      \&quot;must\&quot;: {\n        \&quot;match_all\&quot;: {}\n      }\n    }\n  },\n  \&quot;highlight\&quot;: {\n    \&quot;pre_tags\&quot;: [\n      \&quot;@plugin-highlighted-field@\&quot;\n    ],\n    \&quot;post_tags\&quot;: [\n      \&quot;@/plugin-highlighted-field@\&quot;\n    ],\n    \&quot;fields\&quot;: {\n      \&quot;*\&quot;: {}\n    },\n    \&quot;fragment_size\&quot;: 2147483647\n  }\n}&quot;,&quot;method&quot;:&quot;GET&quot;},{&quot;path&quot;:&quot;/shopping/_search&quot;,&quot;body&quot;:&quot;{\n  \&quot;from\&quot;: 0,\n  \&quot;size\&quot;: 50,\n  \&quot;query\&quot;: {\n    \&quot;match_all\&quot;: {}\n  }\n}&quot;,&quot;method&quot;:&quot;GET&quot;}]" />
+      </map>
+    </option>
+    <option name="searchQueryHistoryState" value="[{&quot;indexPattern&quot;:&quot;shopping&quot;,&quot;query&quot;:&quot;GET shopping&quot;,&quot;json&quot;:&quot;{\&quot;bool\&quot;:{\&quot;minimum_should_match\&quot;:1,\&quot;should\&quot;:[{\&quot;multi_match\&quot;:{\&quot;lenient\&quot;:true,\&quot;fields\&quot;:\&quot;*\&quot;,\&quot;query\&quot;:\&quot;GET shopping\&quot;,\&quot;type\&quot;:\&quot;best_fields\&quot;}}],\&quot;_name\&quot;:\&quot;KQL_filter\&quot;}}&quot;},{&quot;indexPattern&quot;:&quot;shopping&quot;,&quot;query&quot;:&quot;GET test3&quot;,&quot;json&quot;:&quot;{\&quot;bool\&quot;:{\&quot;minimum_should_match\&quot;:1,\&quot;should\&quot;:[{\&quot;multi_match\&quot;:{\&quot;lenient\&quot;:true,\&quot;fields\&quot;:\&quot;*\&quot;,\&quot;query\&quot;:\&quot;GET test3\&quot;,\&quot;type\&quot;:\&quot;best_fields\&quot;}}],\&quot;_name\&quot;:\&quot;KQL_filter\&quot;}}&quot;}]" />
+    <option name="version" value="1" />
+  </component>
+</project>
