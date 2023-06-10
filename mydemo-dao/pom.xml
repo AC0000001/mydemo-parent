@@ -11,6 +11,10 @@
     </parent>
 
     <artifactId>mydemo-dao</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>../mydemo-service</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
